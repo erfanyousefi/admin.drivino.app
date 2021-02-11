@@ -1,0 +1,15 @@
+<%if(messages.ticket){%>
+  <div class="alertBackground text-center">
+    <div class="alert alert-info alert-dismissible m-4 alertTicket">
+        <button type="button" class="close closeAlertTicket" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check"></i> توجه!</h5>
+        <%=messages.ticket%>
+    </div>
+</div>
+<%}%>
+  <script>
+    $('.closeAlertTicket').click(e=>{
+      $(".alertBackground").addClass("hidden");
+      $(".alertTicket").addClass("hidden");
+    }); 
+  </script>

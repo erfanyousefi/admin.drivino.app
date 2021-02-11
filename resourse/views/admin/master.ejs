@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+      <meta charset="UTF-8">
+      <meta name="view-port" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title><%- defineContent('title') || 'Admin Panel'  %></title>
+      <link rel="stylesheet" href="/css/bootstrap.min.css">
+      <link rel="stylesheet" href="/css/bootstrap-rtl.min.css">
+      <link rel="stylesheet" href="/css/vazir.css">
+      <link rel="stylesheet" href="/css/admin.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+      <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+      <link rel="stylesheet" href="/css/persianDatepicker-default.css" />
+      <%- style %>
+
+  </head>
+
+  <body>
+      
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark sticky-top ">
+      <div class="col-3">
+        <a class="navbar-brand" href="/admin">درایور شو</a>
+      </div>
+      
+      <div class="col-2">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span style="margin-left:5px"><%= req.user.name+" "+ req.user.family %></span>
+                <i class="fas fa-user fa-fw"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                  <a class="dropdown-item" href="#">تنظیمات</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="login.html">خروج</a>
+              </div>
+          </li>
+        </ul>
+      </div>
+
+    </nav>
+
+    <div class="container-fluid">
+
+      <div class="row">
+           <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                  <ul class="nav flex-column">
+                    <% if(act == 0){ %>
+                      <li class="nav-item">
+                          <a class="nav-link active" href="/admin">
+                            داشبورد
+                          </a>
+                      </li>
+                    <% }else{ %>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/admin">
+                            داشبورد
+                          </a>
+                      </li>
+                    <% } %>
+                    <% if(act == 1){ %>
+                      <li class="nav-item">
+                          <a class="nav-link active" href="/admin/schools">
+                            آموزشگاه ها
+                          </a>
+                      </li>
+                    <% }else{ %>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/admin/schools">
+                            آموزشگاه ها
+                          </a>
+                      </li>
+                    <% } %>
+                    <% if(act == 2){ %>
+                      <li class="nav-item">
+                          <a class="nav-link active" href="/admin/users">
+                          کاربران
+                          </a>
+                      </li>
+                    <% }else{ %>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/admin/users">
+                          کاربران
+                          </a>
+                      </li>
+                    <% } %>
+                    <% if(act == 6){ %>
+                      <li class="nav-item">
+                          <a class="nav-link active" href="/admin/account">
+                            اطلاعات حساب
+                          </a>
+                      </li>
+                    <% }else{ %>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/admin/account">
+                            اطلاعات حساب
+                          </a>
+                      </li>
+                    <% } %>
+                    <% if(act == 7){ %>
+                      <li class="nav-item">
+                          <a class="nav-link active" href="/admin/messages">
+                            پیام ها
+                          </a>
+                      </li>
+                    <% }else{ %>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/admin/messages">
+                            پیام ها
+                          </a>
+                      </li>
+                    <% } %>
+                    <% if(act == 8){ %>
+                      <li class="nav-item">
+                          <a class="nav-link active" href="">
+                          نظرات کاربران
+                          </a>
+                      </li>
+                    <% }else{ %>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/admin/comments">
+                          نظرات کاربران
+                          </a>
+                      </li>
+                    <% } %>
+                  </ul>
+
+                  <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>گزارشات ذخیره شده</span>
+                  <a class="d-flex align-items-center text-muted" href="#">
+                      <span data-feather="plus-circle"></span>
+                  </a>
+                  </h6>
+                  <ul class="nav flex-column mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                        <span data-feather="file-text"></span>
+                        این ماه
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                        <span data-feather="file-text"></span>
+                        ماه گذشته
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                        <span data-feather="file-text"></span>
+                        شبکه های اجتماعی
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                        <span data-feather="file-text"></span>
+                        فروش سالانه
+                        </a>
+                    </li>
+                  </ul>
+                </div>
+           </nav>
+
+           <main role="main" class="col-md-9 mr-sm-auto col-lg-10 pt-3 px-4">
+                <%- body %>
+           </main>
+
+      </div>
+
+    </div>
+
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>               
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="/js/holder.min.js"></script>
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script src="/js/jquery.min.js" ></script>
+    <script src="/js/persianDatepicker.min.js"></script>
+    <%- script %>
+  </body>
+</html> 

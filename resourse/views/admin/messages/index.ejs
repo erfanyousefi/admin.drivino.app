@@ -1,0 +1,85 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center p-2 border-bottom">
+    <h1 class="h2">پیام ها</h1>
+    <div class="col-sm-6">
+         <ol class="breadcrumb bg-transparent float-sm-left">
+              <li class="breadcrumb-item"><a href="/admin">داشبورد</a></li>
+              <li class="breadcrumb-item active">پیام ها</li>
+         </ol>
+    </div>
+</div>
+<div class="p-4 pt-0 ">
+    <div class="col m-0 bg-white shadow-lg p-2">
+         <div class="d-flex justify-content-between mb-3 border-bottom-1">
+
+    <h2 class="col-3">پیام ها</h2>
+    
+    <div class="col-6">
+
+    </div>
+ 
+    <div class="col-1">
+        <div class="btn-group">
+            <a href="/admin/" class="btn btn-sm btn-primary">ایجاد پیام جدید</a>
+        </div>
+    </div>
+ 
+</div>
+<hr>
+<form class="form-horizontal" action="" method="GET">
+
+    <div class="form-group row">
+
+        <div class="col-2">
+            <label for="teacher" class="control-label font-weight-bold">وضعیت</label>
+            <select name="teach" id="teacher" size="1" class="form-control" >
+                <option value="">وضعیت پیام </option>
+                <option value="">بسته شده</option>
+                <option value="">بازاست</option>
+            </select>
+        </div>
+        
+        <div class="col-2">
+          <label for="name" class="control-label font-weight-bold">عنوان</label>
+          <input type="text" class="form-control" name="name" placeholder="عنوان پیام" value="">
+        </div>
+
+        <div class="col-2 mt-auto">
+            <button type="submit" class="btn btn-danger">فیلتر</button>
+        </div>
+
+        <div col="col-6">
+
+        </div>
+    </div>
+
+</form>
+<hr>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>عنوان</th>
+            <th>بخش</th>
+            <th>زمان ایجاد</th>
+            <th>آخرین به روز رسانی</th>
+            <th>وضعیت</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center">
+        <ul class="pagination">  
+            <li class="page-item active"><a class="page-link" href="#"><span>1</span></a></li>
+            <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+            <li class="page-item"><a class="page-link" href="?page=2">&raquo;</a></li>
+        </ul>
+    </div>
+        
+</div>
+    </div>
+</div>
+
+
+    

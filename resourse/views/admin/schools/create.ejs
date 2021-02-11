@@ -1,0 +1,232 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center p-2 border-bottom">
+  <h1 class="h2">ایجاد آموزشگاه </h1>
+  <div class="col-sm-6">
+    <ol class="breadcrumb bg-transparent float-sm-left">
+      <li class="breadcrumb-item"><a href="/admin">داشبورد</a></li>
+      <li class="breadcrumb-item"><a href="/admin/schools">آموزشگاه ها</a></li>
+      <li class="breadcrumb-item active">ایجاد آموزشگاه </li>
+    </ol>
+  </div>
+</div>
+<div class="p-4 pt-0 ">
+  <div class="col m-0 bg-white shadow-lg p-4">
+    <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+      <h2>افزودن آموزشگاه</h2>
+    </div>
+
+    <form action="/admin/schools/add" method="post" enctype="multipart/form-data" novalidate>
+      <div class="form-group row">
+        <div class="col">
+          <label for="name" class="control-label">نام آموزشگاه</label>
+          <input id="name" type="text" class="form-control" name="name" value="">
+          <div class="text-danger font-weight-bolder">
+            <%if(messages.name){%>
+            <strong><%-messages.name%></strong>
+            <%}%>
+        </div>
+        </div>
+        <div class="col">
+          <label for="email" class="control-label">آدرس ایمیل ( اختیاری )</label>
+          <input id="email" type="email" class="form-control" name="email" value="">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col">
+          <label for="manager" class="control-label">نام کامل مدیر آموزشگاه</label>
+          <input id="manager" type="text" class="form-control" name="manager" value="">
+          <div class="text-danger font-weight-bolder">
+            <%if(messages.manager){%>
+            <strong><%-messages.manager%></strong>
+            <%}%>
+        </div>
+        </div>
+        <div class="col">
+          <label for="national_id" class="control-label">کد ملی مدیر آموزشگاه( اختیاری )</label>
+          <input id="national_id" type="text" class="form-control" name="national_id" value="">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col">
+          <label for="tele" class="control-label">تلفن</label>
+          <input id="tele" type="text" class="form-control" name="tele">
+          <div class="text-danger font-weight-bolder">
+            <%if(messages.tele){%>
+            <strong><%-messages.tele%></strong>
+            <%}%>
+        </div>
+        </div>
+        <div class="col">
+          <label for="mobile" class="control-label">موبایل آموزشگاه</label>
+          <input id="mobile" type="text" class="form-control" name="mobile" value="">
+          <div class="text-danger font-weight-bolder">
+            <%if(messages.mobile){%>
+            <strong><%-messages.mobile%></strong>
+            <%}%>
+        </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col">
+          <label for="password" class="control-label">رمز عبور</label>
+          <input id="password" type="password" class="form-control" name="password">
+          <div class="text-danger font-weight-bolder">
+            <%if(messages.password){%>
+            <strong><%-messages.password%></strong>
+            <%}%>
+        </div>
+        </div>
+        <div class="col">
+          <label for="confirmPassword" class="control-label">تکرار رمز عبور</label>
+          <input id="confirmPassword" type="password" class="form-control" name="confirmPassword">
+          <div class="text-danger font-weight-bolder">
+            <%if(messages.confirmPassword){%>
+            <strong><%-messages.confirmPassword%></strong>
+            <%}%>
+        </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col">
+          <label for=" socials" class="form-label">شبکه های اجتماعی</label>
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">شبکه های اجتماعی </h3>
+            </div>
+            <div class="card-body">
+              <!-- Date range -->
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-6 col-sm-12">
+                    <label>تلگرام:</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="fa fa-telegram text-info"></i>
+                        </span>
+                      </div>
+                      <input type="text" class="form-control text-left" dir="ltr" name="telegram">
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <label>اینستاگرام :</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="fa fa-instagram text-danger"></i>
+                        </span>
+                      </div>
+                      <input type="text" class="form-control text-left" dir="ltr" name="instagram">
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <label>واتساپ :</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="fa fa-whatsapp"></i>
+                        </span>
+                      </div>
+                      <input type="text" class="form-control text-left" dir="ltr" name="whatsapp">
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <label>وبسایت :</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="fa fa-globe text-primary"></i>
+                        </span>
+                      </div>
+                      <input type="text" class="form-control text-left" dir="ltr" name="website">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <p>لینک و آیدی شبکه های اجتماعی خود را در ورودی های فوق وارد کنید</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <label for=" socials" class="form-label">توضیحات مربوطه</label>
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">توضیحات مربوط به آموزشگاه</h3>
+            </div>
+            <div class="card-body">
+              <!-- Date range -->
+              <div class="form-group">
+                <div class="row">
+                  <textarea id="text" rows="5" name="text" class="form-control mt-2"></textarea>
+                  <div class="text-danger font-weight-bolder">
+                    <%if(messages.text){%>
+                    <strong><%-messages.text%></strong>
+                    <%}%>
+                </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer font14">
+              <p>توضیحات مورد نیازی که میخواهید راجب به آموزشگاه قرار  دهید را اینجا تایپ کنید </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col">
+          <label for="site" class="control-label">استان</label>
+          <select name="province" id="countySel" class="form-control">
+          </select>
+          <div class="text-danger font-weight-bolder">
+            <%if(messages.province){%>
+            <strong><%-messages.province%></strong>
+            <%}%>
+        </div>
+        </div>
+        <div class="col">
+          <label for="site" class="control-label">شهر</label>
+          <select name="city" id="stateSel" class="form-control">
+          </select>
+          <div class="text-danger font-weight-bolder">
+            <%if(messages.city){%>
+            <strong><%-messages.city%></strong>
+            <%}%>
+        </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col">
+          <label for="address" class="control-label">آدرس دقیق آموزشگاه</label>
+          <input id="address" type="text" class="form-control" name="address">
+          <div class="text-danger font-weight-bolder">
+            <%if(messages.address){%>
+            <strong><%-messages.address%></strong>
+            <%}%>
+        </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col">
+          <label for="image" class="control-label">تصویر آموزشگاه (ترجیحا لوگی آن)</label>
+          <input id="image" type="file" class="form-control" name="image">
+          <div class="text-danger font-weight-bolder">
+            <%if(messages.image){%>
+            <strong><%-messages.image%></strong>
+            <%}%>
+        </div>
+        </div>
+      </div>
+       <div class="form-group row">
+      <div class="col">
+        <button type="submit" class="btn btn-danger">ثبت آموزشگاه</button>
+      </div>
+    </div>
+    </form>
+    </div>
+    </div>
+  </div>
+  <%- include(viewPath("layouts/messagesAdmin"), {messages})%>
+  <%- include(viewPath("layouts/cities"),{edit : false, province:0, city:0})%>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <meta charset="utf-8" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <title><%- defineContent('title') || "درایور شو" %></title>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="/admin/plugins/font-awesome/css/font-awesome.min.css">
+     <link rel="stylesheet" href="/css/bootstrap.min.css" />
+     <link rel="stylesheet" href="/css/bootstrap-rtl.min.css" />
+     <link rel="stylesheet" href="/css/vazir.css">
+     <link rel="stylesheet" href="/css/home.css">
+     <%- style %>
+</head>
+
+<body class="bodyBg">
+
+     <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+          <!-- Left navbar links -->
+          <ul class="navbar-nav font-weight-bold">
+
+               <% if(auth.check){%>
+               <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/admin" class="nav-link">پنل آموزشگاه</a>
+               </li>
+               <li class="nav-item dropdown">
+                    <a class="nav-link text-danger" href="/logout">
+                         <strong>
+                              خروج
+                              <i class="fa fa-sign-in"></i>
+                         </strong>
+
+                    </a>
+               </li>
+               <% } else { %>
+               <li class="nav-item dropdown">
+                    <a class="nav-link text-success" href="/auth/login">
+                         <strong>
+                              ورود
+                              <i class="fa fa-sign-in"></i>
+                         </strong>
+
+                    </a>
+               </li>
+               <li class="nav-item dropdown">
+                    <a class="nav-link text-success" href="/auth/register">
+                         <strong>
+                              ثبت نام
+                              <i class="fa fa-user-plus"></i>
+                         </strong>
+
+                    </a>
+               </li>
+               <% } %>
+               <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link">تماس با ما</a>
+               </li>
+          </ul>
+
+          <!-- SEARCH FORM -->
+     </nav>
+     <div class="container">
+          <%- body %>
+     </div>
+
+     <script src="/js/jquery-3.3.1.min.js"></script>
+     <script src="/js/popper.min.js"></script>
+     <script src="/js/bootstrap.min.js"></script>
+     <%- script %>
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center p-2 border-bottom">
+    <h1 class="h2">ارسال اطلاعیه به آموزشگاه ها</h1>
+    <div class="col-sm-6">
+        <ol class="breadcrumb bg-transparent float-sm-left">
+            <li class="breadcrumb-item"><a href="/admin/">داشبورد</a></li>
+            <li class="breadcrumb-item active">اطلاعیه ها</li>
+        </ol>
+    </div>
+</div>
+<div class="p-4 ">
+    <div class="col bg-white shadow-lg p-3">
+        <div class="d-flex justify-content-between align-items-center mb-3 pb-2">
+            <h2>اطلاعیه ها</h2>
+            <a href="/admin/notice/add" class="btn btn-info">
+                ارسال اطلاعیه جدید
+                <span class="fa fa-plus"></span>
+            </a>
+        </div>
+        <div class="form-group row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>عنوان </th>
+                            <th>گیرنده</th>
+                            <th>وضعیت</th>
+                            <th>تاریخ ارسال</th>
+                            <th>حذف</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%notices.forEach(notice => {%>
+                        <tr class="notice-row" data-noticeid="<%=notice._id%>">
+                            <td><%=notice.title%></td>
+                            <td><%=notice.school? notice.school.name:"همه ی آموزشگاه ها"%></td>
+                            <td>
+                                <%if(notice.read){%>
+                                <span class="p-2 rounded btn bg-success">مشاهده گردید</span>
+                                <%}else{%>
+                                <span class="p-2 rounded btn bg-info">در انتظار خوانده شدن</span>
+                                <%}%>
+                                </td>
+                                <td><span class="btn"><%=dateTime(notice.createdAt)%></span></td>
+                            <td>
+                                <a href="" class=" noticeDelete" data-noticeid="<%-notice._id%>">
+                                    <span class="btn fa fa-trash-o text-danger font25"></span>
+                                </a>
+                                <a href="" class=" noticeShow" data-noticeid="<%-notice._id%>">
+                                    <span class="btn fa fa-eye text-info font25"></span>
+                                </a>
+                            </td>
+                        </tr>
+                        <%})%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div dir="rtl" class="modal fade mt-5" id="deleteModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h5 class="modal-title" id="modalAlertTitle">پیغام سیستمی</h5>
+                <button type="button" class="btn-close btnClosemodal text-danger" data-dismiss="modal"
+                    aria-label="Close">
+                    <i class="fa fa-close"></i>
+                </button>
+            </div>
+            <div class="modal-body text-center text-danger font36 font-weight-bolder" id="bodyAlert">
+                <p class="text-dark my-2 font20">
+                    آیا مایل به حذف اطلاعیه میباشید ؟
+                </p>
+            </div>
+            <div class="modal-footer">
+                <form class="d-inline deleteFormnotice">
+                    <button type="button" data-dismiss="modal" class="btn btn-info text-white">انصراف</button>
+                    <button type="submit" class="btn btn-danger text-white">حذف</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div dir="rtl" class="modal fade mt-5" id="noticeModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h5 class="modal-title" id="modalAlertTitle">پیغام سیستمی</h5>
+                <button type="button" class="btn-close btnClosemodal text-danger" data-dismiss="modal"
+                    aria-label="Close">
+                    <i class="fa fa-close"></i>
+                </button>
+            </div>
+            <div class="modal-body text-center font-weight-bolder" id="bodyAlert">
+                <h3 class="row my-2 w-100 p-2" id="noticeTitle"></h3>
+                <p class="text-dark my-2 font17"id="noticeBody"></p>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-info text-white">بستن</button>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include(viewPath("layouts/messagesAdmin"), {messages})%>
+<script>
+    // let noticeRows = document.querySelectorAll(".notice-row");
+    // noticeRows.forEach(tr => {
+    //     tr.addEventListener("click", function (e) {
+    //         e.preventDefault();
+    //         let element = e.target.tagName.toLowerCase();
+    //         if (!element.classList.hasClass("noticeDelete")) {
+    //             let notice_id = this.getAttribute("data-noticeid");
+    //             alert(notice_id)
+    //             window.location.assign("/admin/notice/" + notice_id);
+    //         }
+    //     })
+    // })
+
+    let deleteBtns = document.querySelectorAll(".noticeDelete");
+    let deleteFormnotice = document.querySelector(".deleteFormnotice");
+    deleteBtns.forEach(btn => {
+        btn.addEventListener("click", async function (e) {
+            e.preventDefault();
+            let id = await this.getAttribute("data-noticeid");
+            $("#deleteModal").modal("show");
+            deleteFormnotice.setAttribute("action", `/admin/notice/${id}?_method=delete`);
+            deleteFormnotice.setAttribute("method", `POST`);
+        })
+    })
+
+    let noticeBtns = document.querySelectorAll(".noticeShow");
+    noticeBtns.forEach(btn => {
+        btn.addEventListener("click", async function (e) {
+            e.preventDefault();
+            let id = await this.getAttribute("data-noticeid");
+            $("#noticeModal").modal("show");
+            let data = await fetch("/admin/notice/" + id);
+            let result = await data.json();
+            $("#noticeBody").text(result.body);
+            $("#noticeTitle").text(result.title);
+        })
+    })
+</script>

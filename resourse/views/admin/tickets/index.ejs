@@ -1,0 +1,82 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center p-2 border-bottom">
+    <h1 class="h2">تیکت های دریافتی از سمت آموزشگاه ها</h1>
+    <div class="col-sm-6">
+        <ol class="breadcrumb bg-transparent float-sm-left">
+            <li class="breadcrumb-item"><a href="/admin/">داشبورد</a></li>
+            <li class="breadcrumb-item active">تیکت ها</li>
+        </ol>
+    </div>
+</div>
+<div class="p-4 ">
+    <div class="col bg-white shadow-lg p-3">
+        <form class="form-horizontal" action="/admin/ticket/sendTicket" method="post">
+            <div class="d-flex justify-content-between align-items-center mb-3 pb-2">
+                <h2>تیکت ها</h2>
+                
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>موضوع تیکت</th>
+                                <th>عنوان </th>
+                                <th>از طرف </th>
+                                <th>وضعیت</th>
+                                <th>پاسخ ها</th>
+                                <th>اخرین به روز رسانی</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%tickets.forEach(ticket => {%>
+                            <%if(!ticket.parrent){%>
+                            <tr class="ticket-row" data-ticketid="<%=ticket._id%>">
+                                <td><%=ticket.subject%></td>
+                                <td><%=ticket.title%></td>
+                                <td><%=ticket.school.name%></td>
+                                <td>
+                                    <%if(ticket.status == 0){%>
+                                    <span class="p-2 rounded btn bg-info">مشاهده نشده | <span
+                                            class="fa fa-certificate"></span> جدید</span>
+                                    <%}if(ticket.status == 1){%>
+                                    <span class="p-2 rounded btn bg-success">مشاهده گردید</span>
+                                    <%}if(ticket.status == 2){%>
+                                    <span class="p-2 rounded btn bg-warning">پاسخ داده شد</span>
+                                    <%}if(ticket.status == 3){%>
+                                    <span class="p-2 rounded btn bg-danger">بسته شد</span>
+                                    <%}if(ticket.status !== 3){%>
+                                    <span class="m-2 rounded btn bg-primary font12">تیکت باز است</span>
+                                    <%}%>
+                                </td>
+                                <td> 
+                                    <span class="badge bg-info px-2">
+                                        <%let parrents = answers.map(answer => String(answer.parrent) || null)%>
+                                    <%let answerCount = parrents.filter( item => item == String(ticket._id))%>
+                                    <%=answerCount.length%>
+                                    </span>
+                                </td>
+                                <td><span class="btn"><%=dateTime(ticket.updatedAt)%></span></td>
+                            </tr>
+                            <%}%>
+                            <%})%>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<%- include(viewPath("layouts/alertTicket"), {messages})%>
+<%- include(viewPath("layouts/messagesAdmin"), {messages})%>
+<script>
+    let ticketRows = document.querySelectorAll(".ticket-row");
+    ticketRows.forEach(tr => {
+        tr.addEventListener("click", function (e) {
+            e.preventDefault();
+            let ticket_id = this.getAttribute("data-ticketid");
+            window.location.assign("/admin/ticket/" + ticket_id);
+        })
+    })
+</script>

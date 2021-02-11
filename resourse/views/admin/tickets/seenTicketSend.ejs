@@ -1,0 +1,96 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center p-2 border-bottom">
+    <h1 class="h2">مشاهده تیکت ارسال شده</h1>
+    <div class="col-sm-6">
+        <ol class="breadcrumb bg-transparent float-sm-left">
+            <li class="breadcrumb-item"><a href="/admin/">داشبورد</a></li>
+            <li class="breadcrumb-item"><a href="/admin/ticket/send/list">تیکت های ارسال شده</a></li>
+            <li class="breadcrumb-item active">مشاهده</li>
+        </ol>
+    </div>
+</div>
+<div class="p-4 ">
+    <div class="col bg-white shadow-lg p-3">
+        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom row form-group">
+            <h2 class="col">پاسخ به تیکت </h2>
+            <p class="btn col"><%=dateTime(ticket.updatedAt)%></p>
+            <%if(ticket.status == 3){%>
+            <button class="btn btn-danger" class="col" disabled>تیکت بسته شده</button>
+            <%}else{%>
+                <form action="/admin/ticket/send/closeTicket/<%=ticket._id%>" class="col" method="POST">
+                    <button type="submit" class="btn btn-danger col">بستن
+                        تیکت</button>
+                </form>
+            <%}%>
+            </div>
+        <form action="/admin/ticket/answerToReceive/<%=ticket._id%>" method="post">
+            <div class="form-group row">
+                <div class="col">
+                    <label for="title" class="control-label font-weight-bold"> موضوع تیکت</label>
+                    <input type="text" value="<%=ticket.title%>" readonly class="form-control">
+                </div>
+                <div class="col">
+                    <label for="name" class="control-label font-weight-bold">گیرنده تیکت</label>
+                    <input name="school" type="hidden" value="<%=ticket.school._id%>" />
+                    <input type="text" value="<%=ticket.school.name%>" readonly class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="row w-100 text-right bg-light p-2 border m-2">
+                    <h4>متن تیکت : </h4>
+                    <p class="p-2 my-2">
+                        <%=ticket.body%>
+                    </p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <hr />
+                <div class="col">
+                    <label for="body" class="control-label font-weight-bold w-100">
+                        <h3 class="my-2">متن پاسخ به تیکت : </h3>
+                    </label>
+                    <%if(answers.length > 0){%>
+                    <%answers.forEach(answer => {%>
+                    <div class="card">
+                        <%if(answer.sender){%>
+                            <h5 class="card-header bg-success w-100 row">
+                                <span class="w-50 text-right">ارسال کننده : درایوینو</span>
+                                <span class="w-50 text-left">پاسخ در : <%=dateTime(answer.createdAt)%></span>
+                            </h5>
+                        <%}else{%>
+                            <h5 class="card-header bg-primary w-100 row">
+                                <span class="w-50 text-right">ارسال کننده : <%=answer.school.name%></span>
+                                <span class="w-50 text-left">پاسخ در : <%=dateTime(answer.createdAt)%></span>
+                            </h5>
+                        <%}%>
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <p class="card-text"><%=answer.body%></p>
+                        </div>
+                    </div>
+                    <%})%>
+                    <%if(ticket.status !== 3){%>
+                    <textarea class="form-control" rows="6" name="body" id="body" placeholder="متن تیکت "></textarea>
+                    <div class="text-danger font-weight-bolder">
+                        <%if(messages.body){%>
+                        <strong><%-messages.body%></strong>
+                        <%}%>
+                            </div>
+                            <div class="form-group row my-2">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-info">ارسال پاسخ</button>
+                                </div>
+                            </div>
+                        <%}%>
+                        <%}else{%>
+                            <span class="bg-secondary p-2 m-2 border rounded row w-100">هنوز هیچ پاسخی ثبت نگردیده است</span>
+                        <%}%>
+                </div>
+            </div>
+            
+
+        </form>
+
+
+    </div>
+</div>
+<%- include(viewPath("layouts/messagesAdmin"), {messages})%>

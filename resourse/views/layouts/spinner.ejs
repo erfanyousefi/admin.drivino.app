@@ -1,0 +1,17 @@
+<div class="spin hidden">
+    <div class="cspin  text-danger">
+        <i class="fa fa-spinner fa-spin"></i>
+    </div>
+</div>
+<script>
+    // document.addEventListener("loadstart", () => {
+    //     document.querySelector(".spin").classList.remove("hidden");
+    //     document.querySelector(".spin").classList.add("spinnerLoading");
+    //     document.querySelector(".cspin").classList.add("overlay");
+    // })
+    document.addEventListener("submit", (e) => {
+        document.querySelector(".spin").classList.remove("hidden");
+        document.querySelector(".spin").classList.add("spinnerLoading");
+        document.querySelector(".cspin").classList.add("overlay");
+    })
+</script>

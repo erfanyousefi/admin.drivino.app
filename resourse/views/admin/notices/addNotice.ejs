@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center p-2 border-bottom">
+    <h2 class="h2">ارسال اطلاعیه جدید</h2>
+    <div class="col-sm-6">
+        <ol class="breadcrumb bg-transparent float-sm-left">
+            <li class="breadcrumb-item"><a href="/admin/">داشبورد</a></li>
+            <li class="breadcrumb-item"><a href="/admin/notice">اطلاعیه ها</a></li>
+            <li class="breadcrumb-item active">ارسال اطلاعیه جدید</li>
+        </ol>
+    </div>
+</div>
+<div class="p-4 ">
+    <div class="col bg-white shadow-lg p-3">
+        <form class="form-horizontal" action="/admin/notice/add" method="post">
+            <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+                
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    <label for="school" class="control-label font-weight-bold">انتخاب آموزشگاه</label>
+                    <select class="form-control" id="school" name="school">
+                        <option selected value="all" >ارسال برای همه ی آموزشگاه ها</option>
+                        <%schools.forEach(school => {%>
+                            <option value="<%=school._id%>"><%=school.name%></option>
+                        <%})%>
+                    </select>
+                </div>
+                <div class="col">
+                <label for="title" class="control-label font-weight-bold">عنوان اطلاعیه</label>
+                <input type="text" class="form-control" name="title" id="title" placeholder="عنوان اطلاعیه">
+                <div class="text-danger font-weight-bolder">
+                    <%if(messages.title){%>
+                        <strong><%-messages.title%></strong>
+                        <%}%>
+                </div>
+            </div>
+            </div>
+            
+            <div class="form-group row">
+                <div class="col">
+                    <label for="car_model" class="control-label font-weight-bold"></label>
+                    <textarea class="form-control" rows="6" name="body" id="body" placeholder="توضیحات"></textarea>
+                    <div class="text-danger font-weight-bolder">
+                        <%if(messages.body){%>
+                        <strong><%-messages.body%></strong>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    <button type="submit" class="btn btn-danger">ارسال اطلاعیه</button>
+                </div>
+            </div>
+
+        </form>
+
+
+    </div>
+</div>
+<%- include(viewPath("layouts/messagesAdmin"), {messages})%>

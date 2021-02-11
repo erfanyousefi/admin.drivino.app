@@ -1,0 +1,207 @@
+<div class="container">
+    <div class="row p-5 ">
+         <div class="col bg-white shadow-lg p-2">
+              <div class="d-flex justify-content-between mb-3 border-bottom-1">
+                   <h2 class="col">اطلاعات حساب</h2>
+              </div>
+              <form class="form-horizontal" action="/admin/account/edit?_method=put" method="POST" enctype="multipart/form-data">
+                   <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                             <tbody>
+                                  <tr>
+                                       <td>
+                                            <div class="form-group row">
+                                                 <div class="col">
+                                                      <label for="name" class="control-label font-weight-bold">نام
+                                                            </label>
+                                                      <input ac type="text" class="form-control" name="name" id="name"
+                                                           placeholder="نام" value="<%= req.user.name%>"
+                                                           disabled>
+                                                 </div>
+                                                 <div class="col">
+                                                      <label for="family" class="control-label font-weight-bold">نام خانوادگی</label>
+                                                      <input type="text" class="form-control" name="family" id="family"
+                                                           placeholder="ایمیل آموزشگاه" value="<%= req.user.family %>"
+                                                           disabled>
+                                                 </div>
+                                                 <div class="col">
+                                                      <label for="email" class="control-label font-weight-bold">ایمیل
+                                                           آموزشگاه</label>
+                                                      <input type="text" class="form-control" name="email" id="email"
+                                                           placeholder="ایمیل آموزشگاه" value="<%= req.user.email %>"
+                                                           disabled>
+                                                 </div>
+                                                 
+                                            </div>
+                                       </td>
+                                  </tr>
+                                  <tr>
+                                       <td>
+                                            <div class="form-group row">
+                                                <div class="col">
+                                                    <label for="tele" class="control-label font-weight-bold">تلفن</label>
+                                                    <input type="text" class="form-control" name="tele" id="tele" placeholder="کد ملی مدیر 
+                                                         آموزشگاه" value="<%= req.user.tele %>">
+                                               </div>
+                                                 <div class="col">
+                                                      <label for="mobile" class="control-label font-weight-bold">شماره موبایل</label>
+                                                      <input type="text" class="form-control" name="mobile" id="mobile"placeholder="شماره موبایل آموزشگاه" value="<%= req.user.mobile %>">
+                                                 </div>
+                                                 
+                                            </div>
+                                       </td>
+                                  </tr>
+                                  <tr>
+                                       <td>
+                                            <div class="form-group row">
+                                                 <div class="col">
+                                                      <label for="image" class="control-label">تصویر پروفایل</label>
+                                                      <input type="file" class="form-control" name="image" id="image" placeholder="تصویری انتخاب کنید">
+                                                 </div>
+                                            </div>
+                                       </td>
+                                  </tr>
+
+                                  <tr>
+                                       <td>
+                                            <div class="form-group row">
+                                                 <div class="col-md-6">
+                                                    <label for="socials" class="form-label">شبکه های اجتماعی</label>
+                                                    <div class="card card-primary">
+                                                      <div class="card-header">
+                                                        <h3 class="card-title">شبکه های اجتماعی </h3>
+                                                      </div>
+                                                      <div class="card-body">
+                                                        <!-- Date range -->
+                                                        <div class="form-group">
+                                                          <div class="row">
+                                                            <div class="col-md-6 col-sm-12">
+                                                              <label>تلگرام:</label>
+                                                          <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                              <span class="input-group-text">
+                                                                <i class="fa fa-telegram text-info"></i>
+                                                              </span>
+                                                            </div>
+                                                            <input type="text" class="form-control text-left" dir="ltr" name="telegram" value="<%=(req.user.socials.telegram)? req.user.socials.telegram : '' %>">
+                                                        </div>
+                                                      </div>
+                                                      <div class="col-md-6 col-sm-12">
+                                                        <label>اینستاگرام :</label>
+                                                        <div class="input-group">
+                                                          <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                              <i class="fa fa-instagram text-danger"></i>
+                                                            </span>
+                                                          </div>
+                                                          <input type="text" class="form-control text-left" dir="ltr" name="instagram"
+                                                            value="<%=(req.user.socials.instagram)? req.user.socials.instagram : '' %>">
+                                                        </div>
+                                                      </div>
+                                                      <div class="col-md-6 col-sm-12">
+                                                        <label>واتساپ  :</label>
+                                                        <div class="input-group">
+                                                          <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                              <i class="fa fa-whatsapp text-success"></i>
+                                                            </span>
+                                                          </div>
+                                                          <input type="text" class="form-control text-left" dir="ltr" name="whatsapp"
+                                                            value="<%=(req.user.socials.whatsapp)? req.user.socials.whatsapp : '' %>">
+                                                        </div>
+                                                      </div>
+                                                      <div class="col-md-6 col-sm-12">
+                                                        <label>وبسایت :</label>
+                                                        <div class="input-group">
+                                                          <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                              <i class="fa fa-globe text-primary"></i>
+                                                            </span>
+                                                          </div>
+                                                          <input type="text" class="form-control text-left" dir="ltr" name="website"
+                                                            value="<%=(req.user.socials.website)? req.user.socials.website : '' %>">
+                                                        </div>
+                                                      </div>
+                                                      <div class="col-md-6 col-sm-12">
+                                                        <label>لینکدین  :</label>
+                                                        <div class="input-group">
+                                                          <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                              <i class="fa fa-linkedin text-primary"></i>
+                                                            </span>
+                                                          </div>
+                                                          <input type="text" class="form-control text-left" dir="ltr" name="linkedin"
+                                                            value="<%=(req.user.socials.linkedin)? req.user.socials.linkedin : '' %>">
+                                                        </div>
+                                                      </div>
+                                                      <div class="col-md-6 col-sm-12">
+                                                        <label>گیت هابت :</label>
+                                                        <div class="input-group">
+                                                          <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                              <i class="fa fa-github text-dark"></i>
+                                                            </span>
+                                                          </div>
+                                                          <input type="text" class="form-control text-left" dir="ltr" name="github"
+                                                            value="<%=(req.user.socials.github)? req.user.socials.github : '' %>">
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div class="card-footer">
+                                                  <p>لینک و آیدی شبکه های اجتماعی خود را در ورودی های فوق وارد کنید</p>
+                                                </div>
+                                            </div>
+                                            <div class="text-danger my-2 font-weight-bolder">
+                                              <%if(messages.socials){%>
+                                              <strong><%-messages.socials%></strong>
+                                              <%}%>
+                                                    </div>
+                                                  </div>
+                                                  
+                                                  <div class="col-md-6">
+                                                    <label for="text" class="form-label">درباره خودتان توضیحاتی را بنویسید </label>
+                                                    <textarea rows="15" name="text" class="form-control mt-1" id="text"><%= req.user.text %></textarea>
+                                            </div>
+                                       </td>
+                                  </tr>
+
+                                  <tr>
+                               </tr>
+                                  <tr>
+                                       <td>
+                                            <div class="form-group row">
+                                                 <div class="col">
+                                                      <label for="address" class="control-label font-weight-bold">آدرس دفتر</label>
+                                                      <input type='text' class="form-control" id="address"
+                                                           name="address" placeholder="آدرس آموزشگاه"
+                                                           value="<%= req.user.address %>" />
+                                                 </div>
+                                            </div>
+                                       </td>
+                                  </tr>
+
+                                 
+
+                             </tbody>
+                        </table>
+                   </div>
+
+                   <input type="text" name="id" style="display: none;" value="<%= user._id%>">
+
+                   <div class="form-group row">
+                        <div class="col">
+                             <button type="submit" class="btn btn-primary">ویرایش</button>
+                        </div>
+                   </div>
+
+              </form>
+
+         </div>
+    </div>
+</div>
+<%- include(viewPath("layouts/messagesAdmin"), {messages : ""})%>
+<script>
+
+</script>
